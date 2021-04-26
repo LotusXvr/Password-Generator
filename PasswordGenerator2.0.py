@@ -4,15 +4,6 @@ import string
 from time import sleep
 
 
-print("\nYou are using the \"Password Generator v2.0\" made by LotusXvr")
-sleep(2)
-
-
-# Listing the primary alphabet for later adictions
-lower_alphabet = list(string.ascii_lowercase)
-characters = lower_alphabet
-
-
 # Input of X characters from list
 def quantity_of_characters():
 
@@ -140,7 +131,10 @@ def amount_of_passwords():
 def receipt():
 
     print("\n- Your request was:")
-    print(f"{quantity_of_passwords} passwords with {quantity_of_characters} characters")
+    if category == 1:
+        print(f"{quantity_of_passwords} passwords with {quantity_of_characters} characters printed to console")
+    if category == 2:
+        print(f"{quantity_of_passwords} passwords with {quantity_of_characters} characters written to a txt file")
 
     print("- Details:")
     print("Lowercase: Default")
@@ -156,18 +150,11 @@ def receipt():
         print("Special: Selected")
     else:
         print("Special: Not selected")
-    sleep(5)
+    sleep(2)
 
 
-# Proceed?
-def main():
-
-    quantity_of_characters()
-    uppercase()
-    numbers()
-    special_characters()
-    amount_of_passwords()
-    receipt()
+# Result
+def onConsole():
 
     for i in range(10):
         characters.extend(characters)
@@ -206,6 +193,90 @@ def main():
         else:
             print("\nInvalid input")
             continue
+
+
+def Writer():
+
+    file = open("passwords.txt", "a")
+
+    for i in range(10):
+        characters.extend(characters)
+
+    password_number = 1
+
+    while True:
+        print("\nDo you want to proceed?")
+        proceed = str(input("y/1 for yes (or) n/2 for no: \n> "))
+
+        if proceed in "yY1":
+
+            file.write(
+                "\nThank you for using LotusXvr's Password Generator\nhttps://github.com/LotusXvr\n\n")
+            print("\nWriting...")
+
+            if quantity_of_passwords == 1:
+                file.write("\nYour password is: \n")
+            if quantity_of_passwords >= 2:
+                file.write("\nYour passwords are: \n")
+
+            for password in range(quantity_of_passwords):
+                # Shuffling all characters and grabbing the quantity of characters from the list
+                random.shuffle(characters)
+                password_characters = random.sample(
+                    characters, quantity_of_characters)
+                # Shuffling the X characters and joining the list to a single string
+                random.shuffle(password_characters)
+                password_shuffled = ''.join(password_characters)
+                # Writing the result
+                file.write(str(password_number) +
+                           ". " + str(password_shuffled) + "\n")
+                password_number += 1
+
+            print("\nTxt writen and saved as passwords.txt")
+
+            break
+
+        if proceed in "nN2":
+            print("\nProgram terminated by user input.")
+            break
+
+        else:
+            print("\nInvalid input")
+            continue
+
+    file.close()
+
+
+def main():
+
+    print("\nYou are using the \"Password Generator v2.0\" made by LotusXvr")
+    sleep(2)
+
+    # Listing the primary alphabet for later adictions
+    global characters
+
+    lower_alphabet = list(string.ascii_lowercase)
+    characters = lower_alphabet
+
+    # Getting the category
+    global category
+
+    category = int(input(
+        "\nDo you want your passwords to be\n1. Printed on console \n2. Printed on a txt file \n> "))
+
+    # Summoning the functions
+    quantity_of_characters()
+    uppercase()
+    numbers()
+    special_characters()
+    amount_of_passwords()
+    receipt()
+
+    # Choosing the output
+    if category == 1:
+        onConsole()
+    if category == 2:
+        Writer()
 
 
 main()
