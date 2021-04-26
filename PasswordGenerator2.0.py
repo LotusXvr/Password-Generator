@@ -17,18 +17,19 @@ characters = lower_alphabet
 while True:
     try:
         print("\nHow many characters would you like your password to have?")
-        quantity_of_characters = int(input("Amount of characters: "))
+        quantity_of_characters = int(input("Amount of characters: \n> "))
 
         while quantity_of_characters <= 2:
-            print("Your password should be more then 2 characters long, right? Try again!")
-            quantity_of_characters = int(input("Amount of characters: "))
+            print(
+                "Your password should be more then 2 characters long, right? Try again!")
+            quantity_of_characters = int(input("Amount of characters: \n> "))
 
         break
-    
+
     except:
         print("\nInput should be a number")
         continue
-    
+
 
 # Input if they want uppercase letters
 upper_alphabet = list(string.ascii_uppercase)
@@ -36,7 +37,7 @@ uppercase_bool = False
 
 while True:
     print("\nDo you want uppercase letters on your password?")
-    want_uppercase = str(input("y/1 for yes (or) n/2 for no: "))
+    want_uppercase = str(input("y/1 for yes (or) n/2 for no: \n> "))
     if want_uppercase in "yY1":
         characters.extend(upper_alphabet)
         print("Uppercase letters: Yes")
@@ -51,12 +52,12 @@ while True:
 
 
 # Input if they want numbers
-numbers = ["1","2","3","4","5","6","7","8","9","0"]
+numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 numbers_bool = False
 
 while True:
     print("\nDo you want numbers on your password?")
-    want_numbers = str(input("y/1 for yes (or) n/2 for no: "))
+    want_numbers = str(input("y/1 for yes (or) n/2 for no: \n> "))
     if want_numbers in "yY1":
         characters.extend(numbers)
         print("Numbers: Yes")
@@ -71,12 +72,13 @@ while True:
 
 
 # Input if they want Special Characters
-special_characters = ["@", "_", "#", "!", "?", "$", ".", ",", "&", "(", ")", "[", "]", "{", "}", ":", "+", "^", "~", "*", "="]
+special_characters = ["@", "_", "#", "!", "?", "$", ".", ",",
+                      "&", "(", ")", "[", "]", "{", "}", ":", "+", "^", "~", "*", "="]
 special_bool = False
 
 while True:
     print("\nDo you want special characters on your password?")
-    want_special = str(input("y/1 for yes (or) n/2 for no: "))
+    want_special = str(input("y/1 for yes (or) n/2 for no: \n> "))
     if want_special in "yY1":
         characters.extend(special_characters)
         print("Special characters: Yes")
@@ -94,12 +96,12 @@ while True:
 while True:
     try:
         print("\nHow many passwords would you like?")
-        quantity_of_passwords = int(input("Amount of passwords: "))
+        quantity_of_passwords = int(input("Amount of passwords: \n> "))
 
         while quantity_of_passwords == 0:
             print("You should want more then zero passwords, right? Try again!")
-            quantity_of_passwords = int(input("Amount of passwords: "))
-        
+            quantity_of_passwords = int(input("Amount of passwords: \n> "))
+
         break
 
     except:
@@ -110,7 +112,6 @@ while True:
 # Multiplying the list for more characters and variety
 for multiplication in range(10):
     characters.extend(characters)
-
 
 # The Output
 # Listing the passwords
@@ -136,9 +137,9 @@ else:
 sleep(5)
 
 # Proceed?
-while True:    
+while True:
     print("\nDo you want to proceed?")
-    proceed = str(input("y/1 for yes (or) n/2 for no: "))
+    proceed = str(input("y/1 for yes (or) n/2 for no: \n> "))
 
     if proceed in "yY1":
 
@@ -148,10 +149,10 @@ while True:
             print("\nYour passwords are:")
 
         for password in range(quantity_of_passwords):
-            sleep(0.01)
             # Shuffling all characters and grabbing the quantity of characters from the list
             random.shuffle(characters)
-            password_characters = random.sample(characters, quantity_of_characters)
+            password_characters = random.sample(
+                characters, quantity_of_characters)
             # Shuffling the X characters and joining the list to a single string
             random.shuffle(password_characters)
             password_shuffled = ''.join(password_characters)
@@ -159,7 +160,6 @@ while True:
             print(f"({password_number})", password_shuffled)
             password_number += 1
 
-        print("\nEnd of program.")
         break
 
     if proceed in "nN2":
@@ -169,11 +169,3 @@ while True:
     else:
         print("\nInvalid input")
         continue
-    
-    
-
-
-
-
-
-
