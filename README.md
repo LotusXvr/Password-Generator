@@ -1,4 +1,4 @@
-# PasswordGenerator
+# Password Generator
 This is a program that lets you input what you want on your password and create a pretty safe and hard do crack password.
 It has an option to create passwords with the amount of characters that you decide as well as creating multiple passwords in one request.
 It lets you decide if your password will have uppercase letters, numbers and special characters.

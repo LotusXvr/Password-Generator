@@ -4,6 +4,10 @@ import string
 from time import sleep
 
 
+print("\nYou are using the \"Password Generator v3.0\" made by LotusXvr")
+sleep(2)
+
+
 # Input of X characters from list
 def quantity_of_characters():
 
@@ -27,8 +31,6 @@ def quantity_of_characters():
             continue
 
 # Input if they want uppercase letters
-
-
 def uppercase():
 
     global uppercase_bool
@@ -42,11 +44,9 @@ def uppercase():
         want_uppercase = str(input("y/1 for yes (or) n/2 for no: \n> "))
         if want_uppercase in "yY1":
             characters.extend(upper_alphabet)
-            print("Uppercase letters: Yes")
             uppercase_bool = True
             break
         if want_uppercase in "nN2":
-            print("Uppercase letters: No")
             break
         else:
             print("\nInvalid input")
@@ -67,11 +67,9 @@ def numbers():
         want_numbers = str(input("y/1 for yes (or) n/2 for no: \n> "))
         if want_numbers in "yY1":
             characters.extend(numbers)
-            print("Numbers: Yes")
             numbers_bool = True
             break
         if want_numbers in "nN2":
-            print("Numbers: No")
             break
         else:
             print("\nInvalid input")
@@ -93,11 +91,9 @@ def special_characters():
         want_special = str(input("y/1 for yes (or) n/2 for no: \n> "))
         if want_special in "yY1":
             characters.extend(special_characters)
-            print("Special characters: Yes")
             special_bool = True
             break
         if want_special in "nN2":
-            print("Special characters: No")
             break
         else:
             print("\nInvalid input")
@@ -150,7 +146,8 @@ def receipt():
         print("Special: Selected")
     else:
         print("Special: Not selected")
-    sleep(2)
+
+    sleep(3.5)
 
 
 # Result
@@ -195,6 +192,7 @@ def onConsole():
             continue
 
 
+# Written to txt
 def Writer():
 
     file = open("passwords.txt", "a")
@@ -232,7 +230,7 @@ def Writer():
                            ". " + str(password_shuffled) + "\n")
                 password_number += 1
 
-            print("\nTxt writen and saved as passwords.txt")
+            print("\nTxt file written and saved as passwords.txt in current directory")
 
             break
 
@@ -247,10 +245,11 @@ def Writer():
     file.close()
 
 
-def main():
+def breaker():
+    prompt_to_break = input("\n\nPress ENTER to terminate the program")
 
-    print("\nYou are using the \"Password Generator v2.0\" made by LotusXvr")
-    sleep(2)
+
+def main():
 
     # Listing the primary alphabet for later adictions
     global characters
@@ -258,7 +257,7 @@ def main():
     lower_alphabet = list(string.ascii_lowercase)
     characters = lower_alphabet
 
-    # Getting the category
+    # Getting the output category
     global category
 
     category = int(input(
@@ -272,11 +271,14 @@ def main():
     amount_of_passwords()
     receipt()
 
-    # Choosing the output
+    # Choosing the output type
     if category == 1:
         onConsole()
     if category == 2:
         Writer()
+
+    # Keeping the console open
+    breaker()
 
 
 main()
